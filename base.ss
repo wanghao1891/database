@@ -12,9 +12,19 @@
       (put-datum out-port db)
       (close-port out-port))))
 
-(define insert-record
-  (lambda (db filed)
+(define load-db
+  (lambda (filename)
     ()))
+
+(define insert-record
+  (lambda (db record)
+    (cons (get-records db) record)))
+
+(define get-records
+  (lambda (db)
+    (vector-ref db 2)))
+
+
 
 (create-db "data-04" '(id name password))
 
