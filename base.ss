@@ -7,18 +7,24 @@
       (save-db db filename))))
 
 (define save-db
-  (lambda (db filename)
-    (let ((out-port (open-file-output-port filename (file-options no-fail no-truncate) (buffer-mode block) (native-transcoder))))
+  (lambda (db)
+    (let ((out-port (open-file-output-port (get-filename db) (file-options no-fail no-truncate) (buffer-mode block) (native-transcoder))))
       (put-datum out-port db)
       (close-port out-port))))
 
+(define get-filename
+  (lambda (db)
+    (string-append (vector-ref db 0) ".ss")))
+
 (define load-db
   (lambda (filename)
-    ()))
+    (let ((in-port (open-input-file (string-append filename ".ss"))))
+      (get-datum in-port))))
 
 (define insert-record
   (lambda (db record)
-    (cons (get-records db) record)))
+    (vector-set! db 2 (cons record (get-records db)))
+    (save-db db)))
 
 (define get-records
   (lambda (db)
@@ -28,3 +34,4 @@
 
 (create-db "data-04" '(id name password))
 
+(insert-record (load-db "data-04") (vector 1 "mike" 123456))
