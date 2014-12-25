@@ -22,8 +22,8 @@
     (string-append (vector-ref db 0) ".ss")))
 
 (define load-db
-  (lambda (filename)
-    (let ((in-port (open-input-file (string-append filename ".ss"))))
+  (lambda (name)
+    (let ((in-port (open-input-file (string-append name ".ss"))))
       (get-datum in-port))))
 
 (define insert-record
@@ -35,8 +35,14 @@
   (lambda (db)
     (vector-ref db 2)))
 
-;test
-(let* ((filename "data-01")
-       (field '(id name password)))
-  (create-db filename field)
-  (insert-record (load-db filename) (vector 1 "mike" 123456)))
+(define get-record
+  (lambda (db id)
+    (list-ref (get-records db) id)))
+
+;Test
+(define name "data-01")
+(create-db name '(id name password))
+(define db (load-db name))
+(insert-record db (vector 1 "Tom" "123456"))
+(insert-record db (vector 2 "Jerry" "123456"))
+(get-record db 0)
