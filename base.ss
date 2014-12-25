@@ -4,11 +4,16 @@
   (lambda (name field)
     (let ((db (vector name field '()))
 	  (filename (string-append name ".ss")))
-      (save-db db filename))))
+      (save-db db)
+      )))
 
 (define save-db
   (lambda (db)
-    (let ((out-port (open-file-output-port (get-filename db) (file-options no-fail no-truncate) (buffer-mode block) (native-transcoder))))
+    (let* ((filename (get-filename db))
+	   (fo (file-options no-fail no-truncate))
+	   (bm (buffer-mode block))
+	   (nt (native-transcoder))
+	   (out-port (open-file-output-port filename fo bm nt)))
       (put-datum out-port db)
       (close-port out-port))))
 
@@ -30,8 +35,8 @@
   (lambda (db)
     (vector-ref db 2)))
 
-
-
-(create-db "data-04" '(id name password))
-
-(insert-record (load-db "data-04") (vector 1 "mike" 123456))
+;test
+(let* ((filename "data-01")
+       (field '(id name password)))
+  (create-db filename field)
+  (insert-record (load-db filename) (vector 1 "mike" 123456)))
