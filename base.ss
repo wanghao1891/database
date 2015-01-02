@@ -38,11 +38,3 @@
 (define get-record
   (lambda (db id)
     (list-ref (get-records db) id)))
-
-;Test
-(define name "data-01")
-(create-db name '(id name password))
-(define db (load-db name))
-(insert-record db (vector 1 "Tom" "123456"))
-(insert-record db (vector 2 "Jerry" "123456"))
-(get-record db 0)
