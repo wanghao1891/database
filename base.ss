@@ -7,15 +7,24 @@
       (save-db db)
       )))
 
-(define save-db
+(define get-rw-out-port
   (lambda (db)
     (let* ((filename (get-filename db))
 	   (fo (file-options no-fail no-truncate))
 	   (bm (buffer-mode block))
-	   (nt (native-transcoder))
-	   (out-port (open-file-output-port filename fo bm nt)))
-      (put-datum out-port db)
-      (close-port out-port))))
+	   (nt (native-transcoder)))
+      (open-file-output-port filename fo bm nt))))
+
+(define get-truncate-out-port
+  (lambda (db)
+    (let ((filename (get-filename db)))
+      (open-output-file filename '(truncate)))))
+
+(define save-db
+  (lambda (db)
+    (let ((out-port (get-truncate-out-port db)))
+     (put-datum out-port db)
+     (close-port out-port))))
 
 (define get-filename
   (lambda (db)
