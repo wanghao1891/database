@@ -1,1 +1,1 @@
-#("data-01" (id name password) (#("2" "Jerry" "123456") #("2" "Jerry" "123456") #("2" "Jerry" "123456") #("2" "Jerry" "123456") #("2" "Jerry" "123456") #("1" "Tom" "123456") #("1" "Tom" "123456")))
+#("data-01" (id name pronunciation sound definition create update) (#("1" "2" "3" "201511722343" "201511722343") (vector "1" "2" "3" 123456) (vector "1" "2" "3") (vector ("1" "2" "3")) #("1" "2" "3")))

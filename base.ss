@@ -47,3 +47,9 @@
 (define get-record
   (lambda (db id)
     (list-ref (get-records db) id)))
+
+(define get-latest-id
+  (lambda (db)
+    (vector-ref 
+     (car (get-records db))
+     0)))
