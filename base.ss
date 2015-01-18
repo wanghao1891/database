@@ -50,6 +50,9 @@
 
 (define get-latest-id
   (lambda (db)
-    (vector-ref 
-     (car (get-records db))
-     0)))
+    (let ((records (get-records db)))
+      (if (null? records)
+	  0
+	  (vector-ref 
+	   (car (get-records db))
+	   0)))))
