@@ -1,1 +1,1 @@
-#("data-01" (id name pronunciation sound definition create update) (#("1" "2" "3" "201511722343" "201511722343") (vector "1" "2" "3" 123456) (vector "1" "2" "3") (vector ("1" "2" "3")) #("1" "2" "3")))
+#("data-01" (id name pronunciation sound definition create-time update-time) (#("hello" "null" "http://www.oxfordlearnersdictionaries.com/media/english/uk_pron/h/hel/hello/hello__gb_1.mp3" "null" (2015 1 18 12 2 49) (2015 1 18 12 2 49))))
