@@ -7,17 +7,20 @@
 (define generate-html
   (lambda (field)
     (cond
-     ((null? field) (display "<input type='button' value='OK'/>"))
+     ((null? field) (display "<input type='submit' value='Submit'/>"))
      ((atom? (car field)) (generate-html (cdr field)))
-     (else (begin
-	     ;(display (cadr (car field)))
-	     (if (equal? (cadr (car field)) 'text)
-		 (begin
-		   (display (caar field)) 
-		   (display "<input type='text'/>"))
-		 (display "nothing"))
-	     (generate-html (cdr field)))))))
+     (else
+	   (if (equal? (cadr (car field)) 'text)
+	       (begin
+		 (display (caar field)) 
+		 (display "<input type='text' name='")
+		 (display (caar field))
+		 (display "' />"))
+	       (display "nothing"))
+	   (generate-html (cdr field))))))
 
+(display "<html><body><form action='test' method='post'>")
 (generate-html (get-field (load-db name)))
+(display "</form></body></html>")
 
 
