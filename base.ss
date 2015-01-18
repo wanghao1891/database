@@ -56,3 +56,7 @@
 	  (vector-ref 
 	   (car (get-records db))
 	   0)))))
+
+(define get-field
+  (lambda (db)
+    (vector-ref db 1)))
