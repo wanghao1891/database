@@ -19,7 +19,7 @@
 	       (display "nothing"))
 	   (generate-html (cdr field))))))
 
-(display "<html><body><form action='test' method='post'>")
+(display "<html><body><head><meta charset=\"utf-8\"></head><form action='insert' method='post'>")
 (generate-html (get-field (load-db name)))
 (display "</form></body></html>")
 

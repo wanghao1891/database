@@ -1,1 +1,1 @@
-#("data-01" (id (name text) (pronunciation text) (sound text) (definition text) create-time update-time) (#(2 "1" "1" "1" "1" (2015 1 18 21 29 40) (2015 1 18 21 29 40)) #(1 "1" "1" "1" "1" (2015 1 18 21 27 29) (2015 1 18 21 27 29))))
+#("data-01" (id (name text) (pronunciation text) (sound text) (definition text) create-time update-time) (#(1 "hello" "null" "http://www.oxfordlearnersdictionaries.com/media/english/uk_pron/h/hel/hello/hello__gb_1.mp3" "null" (2015 1 19 21 39 31) (2015 1 19 21 39 31))))
