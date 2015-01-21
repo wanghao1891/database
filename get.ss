@@ -10,6 +10,16 @@
 
 (define show
   (lambda (records)
-    (map display records)))
+    (map
+     (lambda (record)
+       (display "<script>function Play(soundobj) {var thissound=document.getElementById(soundobj);thissound.play();}</script>")
+       (display "<a href=\"javascript:Play('hello')\">")
+       (display (vector-ref record 1))
+       (display "</a>")
+       (display "<audio controls='controls' hidden='true' id='hello'><source src='")
+       (display (vector-ref record 3))
+       (display "' type='audio/mpeg'>Your browser does not support the audio element.</audio>")
+       ) 
+     records)))
 
 (show (get-records db))
