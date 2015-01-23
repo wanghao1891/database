@@ -10,16 +10,21 @@
 
 (define show
   (lambda (records)
+    (display "{\"vocabulary\":[")
     (map
      (lambda (record)
-       (display "<script>function Play(soundobj) {var thissound=document.getElementById(soundobj);thissound.play();}</script>")
-       (display "<a href=\"javascript:Play('hello')\">")
+       ;(display "<script>function Play(soundobj) {var thissound=document.getElementById(soundobj);thissound.play();}</script>")
+       ;(display "<a href=\"javascript:Play('hello')\">")
+       (display "{\"name\":\"")
        (display (vector-ref record 1))
-       (display "</a>")
-       (display "<audio controls='controls' hidden='true' id='hello'><source src='")
+       (display "\",\"sound\":\"")
+       ;(display "</a>")
+       ;(display "<audio controls='controls' hidden='true' id='hello'><source src='")
        (display (vector-ref record 3))
-       (display "' type='audio/mpeg'>Your browser does not support the audio element.</audio>")
+       (display "\"},")
+       ;(display "' type='audio/mpeg'>Your browser does not support the audio element.</audio>")
        ) 
-     records)))
+     records)
+    (display "{}]}")))
 
 (show (get-records db))
