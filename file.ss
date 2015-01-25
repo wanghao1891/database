@@ -34,7 +34,8 @@
 	  (display "0x")
 	  (display (number->string x 16))
 	  (display ",")
-	  (loop (get-u8 input-port))))))
+	  (loop (get-u8 input-port)))
+	(close-port input-port))))
 
 (display "])")
 
