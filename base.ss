@@ -32,8 +32,10 @@
 
 (define load-db
   (lambda (name)
-    (let ((in-port (open-input-file (string-append name ".ss"))))
-      (get-datum in-port))))
+    (let* ((in-port (open-input-file (string-append name ".ss")))
+	   (data (get-datum in-port)))
+      (close-port in-port)
+      data)))
 
 (define insert-record
   (lambda (db record)

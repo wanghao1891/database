@@ -2,7 +2,7 @@
 
 (load "base.ss")
 
-(define name "data-01")
+(define name (cadr (command-line)))
 
 (define generate-html
   (lambda (field)
@@ -20,6 +20,9 @@
 	   (generate-html (cdr field))))))
 
 (display "<html><body><head><meta charset=\"utf-8\"></head><form action='insert' method='post'>")
+(display "<input type='text' hidden='true' name='db' value='")
+(display name)
+(display "' />")
 (generate-html (get-field (load-db name)))
 (display "</form></body></html>")
 
