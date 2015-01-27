@@ -17,6 +17,8 @@
        ;(display "<a href=\"javascript:Play('hello')\">")
        (display "{\"name\":\"")
        (display (vector-ref record 1))
+o       (display "\",\"pronunciation\":\"")
+       (display (vector-ref record 2))
        (display "\",\"sound\":\"")
        ;(display "</a>")
        ;(display "<audio controls='controls' hidden='true' id='hello'><source src='")
