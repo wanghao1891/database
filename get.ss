@@ -4,7 +4,7 @@
 (define name "data-01")
 (define db (load-db name))
 
-(define show
+(define show-ascend
   (lambda (records)
     (display "{\"vocabulary\":[")
     (map
@@ -24,4 +24,20 @@
      records)
     (display "{}]}")))
 
-(show (get-records db))
+(define show-descend
+  (lambda (records)
+    (string-append "{\"vocabulary\":["
+		   (let loop ((ls records))
+		     (cond
+		      ((null? ls) "{}]}")
+		      (else
+		       (let ((record (car ls)))
+			 (string-append "{\"name\":\"" (vector-ref record 1)
+					"\",\"pronunciation_uk\":\"" (vector-ref record 2)
+					"\",\"sound_uk\":\"" (vector-ref record 3)
+					"\",\"pronunciation_us\":\"" (vector-ref record 4)
+					"\",\"sound_us\":\"" (vector-ref record 5)
+					"\"},"
+					(loop (cdr ls))))))))))
+
+(display (show-descend (get-records db)))
