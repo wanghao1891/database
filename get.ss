@@ -37,6 +37,7 @@
 					"\",\"sound_uk\":\"" (vector-ref record 3)
 					"\",\"pronunciation_us\":\"" (vector-ref record 4)
 					"\",\"sound_us\":\"" (vector-ref record 5)
+					"\",\"definition\":\"" (vector-ref record 6)
 					"\"},"
 					(loop (cdr ls))))))))))
 

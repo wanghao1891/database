@@ -14,7 +14,23 @@
     "process"
     "promise"
     "exit"
-    "exist"))
+    "exist"
+    "descend"
+    "ascend"
+    "common"
+    "various"
+    "accurate"
+    "data"
+    "product"
+    "project"
+    "advance"
+    "pronounce"
+    "date"
+    "progress"
+    "congress"
+    "formal"
+    "behaviour"
+    "aggressive"))
 
 (let loop ((ls vocabulary-list))
   (cond
