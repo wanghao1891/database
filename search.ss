@@ -2,6 +2,13 @@
 
 (define search-text (cadr (command-line)))
 
-(system (string-append 
-	 "cd /root/workspace/parser/; petite --script html-parser.ss "
-	 search-text))
+(load "base.ss")
+
+(let* ((db (load-db "data-01"))
+       (result (get-record-by-name db search-text))
+       (result-length (vector-length result)))
+  (if (= result-length 0)
+      (system (string-append 
+	       "cd /root/workspace/parser/; petite --script html-parser.ss "
+	       search-text)))
+  (display result-length))

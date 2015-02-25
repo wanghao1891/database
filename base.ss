@@ -62,3 +62,16 @@
 (define get-field
   (lambda (db)
     (vector-ref db 1)))
+
+(define get-record-by-name
+  (lambda (db name)
+    (let loop ((ls (get-records db)))
+      (cond
+       ((null? ls) (vector))
+       (else
+	(let* ((record (car ls))
+	       (name-record (vector-ref record 1)))
+	  (if (equal? name name-record)
+	      record
+	      (loop (cdr ls)))))))))
+
