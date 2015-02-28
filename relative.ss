@@ -1,6 +1,6 @@
 #!/usr/bin/petite --script
 
-o(define _table 
+(define _table 
   '((p (pro (proce (process))
 	    (produ (product))
 	    (progr (progress))
