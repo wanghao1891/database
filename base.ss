@@ -65,7 +65,7 @@
 
 (define get-record-by-name
   (lambda (db name)
-    (let loop ((reocrds (get-records db)))
+    (let loop ((records (get-records db)))
       (cond
        ((null? records) (vector))
        (else
@@ -73,7 +73,7 @@
 	       (_name (vector-ref record 1)))
 	  (if (equal? name _name)
 	      record
-	      (loop (cdr reocrds)))))))))
+	      (loop (cdr records)))))))))
 
 (define get-id
   (lambda (record)
@@ -81,8 +81,10 @@
 
 (define delete-record-by-id
   (lambda (db id)
-    (vector-set! 
+    ;set the new records to db.
+    (vector-set!
      db 2
+     ;get the new recrods except the deleted record.
      (let loop ((records (get-records db)))
        (cond
 	((null? records) '())
@@ -93,6 +95,7 @@
 	    ((equal? id _id) (loop (cdr records)))
 	    (else
 	     (cons record (loop (cdr records))))))))))
+    ;save the new db.
     (save-db db)))
 
 ;(cons (cons (vector 1 2 3) (cons '() '())) '())
