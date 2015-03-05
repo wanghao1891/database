@@ -65,13 +65,39 @@
 
 (define get-record-by-name
   (lambda (db name)
-    (let loop ((ls (get-records db)))
+    (let loop ((reocrds (get-records db)))
       (cond
-       ((null? ls) (vector))
+       ((null? records) (vector))
        (else
-	(let* ((record (car ls))
-	       (name-record (vector-ref record 1)))
-	  (if (equal? name name-record)
+	(let* ((record (car records))
+	       (_name (vector-ref record 1)))
+	  (if (equal? name _name)
 	      record
-	      (loop (cdr ls)))))))))
+	      (loop (cdr reocrds)))))))))
+
+(define get-id
+  (lambda (record)
+    (vector-ref record 0)))
+
+(define delete-record-by-id
+  (lambda (db id)
+    (vector-set! 
+     db 2
+     (let loop ((records (get-records db)))
+       (cond
+	((null? records) '())
+	(else
+	 (let* ((record (car records))
+		(_id (get-id record)))
+	   (cond
+	    ((equal? id _id) (loop (cdr records)))
+	    (else
+	     (cons record (loop (cdr records))))))))))
+    (save-db db)))
+
+;(cons (cons (vector 1 2 3) (cons '() '())) '())
+
+;(delete-record-by-id (load-db "data-01") 72)
+
+
 
