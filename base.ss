@@ -2,10 +2,8 @@
 
 (define create-db
   (lambda (name field)
-    (let ((db (vector name field '()))
-	  (filename (string-append name ".ss")))
-      (save-db db)
-      )))
+    (let ((db (vector name field '())))
+      (save-db db))))
 
 (define get-rw-out-port
   (lambda (db)
