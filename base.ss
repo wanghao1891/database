@@ -100,5 +100,14 @@
 
 ;(delete-record-by-id (load-db "data-01") 72)
 
+(define get-some-records
+  (lambda (db num)
+    (let loop ((_records (get-records db))
+	       (_num num))
+      (cond
+       ((equal? _num 0) '())
+       (else
+	(cons (car _records) (loop (cdr _records) (- _num 1))))))))
 
+;(display (get-some-records (load-db "data-01") 10))
 

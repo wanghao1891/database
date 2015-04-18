@@ -27,7 +27,7 @@
 (define show-descend
   (lambda (records)
     (string-append "{\"vocabulary\":["
-		   (let loop ((ls records))
+   		   (let loop ((ls records))
 		     (cond
 		      ((null? ls) "{}]}")
 		      (else
@@ -41,4 +41,4 @@
 					"\"},"
 					(loop (cdr ls))))))))))
 
-(display (show-descend (get-records db)))
+(display (show-descend (get-some-records db 20)))
