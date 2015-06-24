@@ -9,6 +9,8 @@
        (result-length (vector-length result)))
   (if (= result-length 0)
       (system (string-append 
-	       "cd /root/workspace/parser/; petite --script html-parser.ss "
+	       "cd " (current-directory) "/../parser/; petite --script html-parser.ss "
 	       search-text)))
   (display result-length))
+
+(current-directory)
