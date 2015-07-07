@@ -20,7 +20,7 @@
        (display "\",\"sound_us\":\"")
        (display (vector-ref record 5))
        (display "\"},")
-       ) 
+       )
      records)
     (display "{}]}")))
 
