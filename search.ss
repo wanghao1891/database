@@ -23,10 +23,12 @@
 (let* ((db (load-db "data-01"))
        (result (get-record-by-name db search-text))
        (result-length (vector-length result)))
-  (if (= result-length 0)
-      (system (string-append
-	       "cd " (current-directory) "/../parser/; petite --script html-parser.ss "
-	       search-text)))
-  (display (get-vocabulary-json result)))
+  (cond ((= result-length 0)
+         (system (string-append
+                  "cd " (current-directory) "/../parser/; petite --script html-parser.ss "
+                  search-text))
+         (display 0))
+        (else
+         (display (get-vocabulary-json result)))))
 
 (current-directory)
