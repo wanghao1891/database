@@ -24,21 +24,31 @@
      records)
     (display "{}]}")))
 
+(define my-vector-ref
+  (lambda (record number)
+    (if (> (vector-length record) number)
+        (if (or (string? (vector-ref record number))
+                (number? (vector-ref record number)))
+            (vector-ref record number)
+            "")
+        "")))
+
 (define show-descend
   (lambda (records)
-    (string-append "{\"vocabulary\":["
-   		   (let loop ((ls records))
-		     (cond
-		      ((null? ls) "{}]}")
-		      (else
-		       (let ((record (car ls)))
-			 (string-append "{\"name\":\"" (vector-ref record 1)
-					"\",\"pronunciation_uk\":\"" (vector-ref record 2)
-					"\",\"sound_uk\":\"" (vector-ref record 3)
-					"\",\"pronunciation_us\":\"" (vector-ref record 4)
-					"\",\"sound_us\":\"" (vector-ref record 5)
-					"\",\"definition\":\"" (vector-ref record 6)
-					"\"},"
-					(loop (cdr ls))))))))))
+    (string-append
+     "{\"vocabulary\":["
+     (let loop ((ls records))
+       (cond
+        ((null? ls) "{}]}")
+        (else
+         (let ((record (car ls)))
+           (string-append "{\"name\":\"" (my-vector-ref record 1)
+                          "\",\"pronunciation_uk\":\"" (my-vector-ref record 2)
+                          "\",\"sound_uk\":\"" (my-vector-ref record 3)
+                          "\",\"pronunciation_us\":\"" (my-vector-ref record 4)
+                          "\",\"sound_us\":\"" (my-vector-ref record 5)
+                          "\",\"definition\":\"" (my-vector-ref record 6)
+                          "\"},"
+                          (loop (cdr ls))))))))))
 
 (display (show-descend (get-some-records db 20)))
