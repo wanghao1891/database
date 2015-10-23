@@ -111,3 +111,12 @@
 
 ;(display (get-some-records (load-db "data-01") 10))
 
+(define get-record-names
+  (lambda (records)
+    (cond
+     ((null? records) '())
+     (else (cons
+            (vector-ref (car records) 1)
+            (get-record-names (cdr records)))))))
+
+;(display (get-record-names (get-records (load-db "data-01"))))

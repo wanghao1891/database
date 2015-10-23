@@ -1,5 +1,7 @@
 #!/usr/bin/petite --script
 
+(load "base.ss")
+#;
 (define vocabulary-list
   '("hello"
     "vancouver"
@@ -31,6 +33,11 @@
     "formal"
     "behaviour"
     "aggressive"))
+
+(define vocabulary-list
+  (get-record-names
+   (get-records
+    (load-db "data-01"))))
 
 (let loop ((ls vocabulary-list))
   (cond
